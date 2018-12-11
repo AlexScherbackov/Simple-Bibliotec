@@ -31,7 +31,6 @@
 		},
 		data(){
 			return{
-
 			}
 		},
 		computed:{
@@ -40,7 +39,6 @@
 			},
 			allLanguages(){
 				let language = "I don't know";
-
 				if (this.book.language) {
 					language = this.book.language.join(", ");
 				}
@@ -59,7 +57,6 @@
 		padding-bottom: 10px;
 		border-bottom: 1px solid gray;
 	}
-
 	.text-field{
 		max-width: 100%;
 	}

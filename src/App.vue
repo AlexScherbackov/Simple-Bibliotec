@@ -1,42 +1,35 @@
 <template>
   <div id="app">
-    <div class="container">
-      <keep-alive>
-        <component :is='actualView'></component>
-      </keep-alive>
-    </div>
-   
+    <el-container>
+      <el-main>
+        <router-view></router-view>
+      </el-main>
+    </el-container>
   </div>
 </template>
 
 <script>
 
-import search from './components/searchForm.vue';
-import list from './components/bookList.vue';
 import bookServices from './store/bookServices.js';
 
 export default {
   name: 'app',
   data () {
     return {
-      actualView: 'search'
+      /*actualView: 'search'*/
     }
   },
   created(){
     bookServices.$on("viewList", ()=>{
-      this.actualView = 'list';
+      this.$router.push({name: 'bookList'})
     })
-  },
-  components:{
-    search,
-    list
   }
 
 }
 </script>
 
 <style lang="scss">
-@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+
 body{
   width: 100%;
   height: 100%;
@@ -48,7 +41,6 @@ body{
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 
 h1, h2 {
@@ -68,4 +60,17 @@ li {
 a {
   color: #42b983;
 }
+
+.el-form-item__label{
+    font-size: 24px;
+    line-height: 32px;
+    padding-bottom: 5px !important;
+  }
+
+.bg-blue{
+  background-color: #409eff;
+  &:hover{
+    opacity: 0.8;
+  }
+} 
 </style>
