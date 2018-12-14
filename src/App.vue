@@ -1,10 +1,8 @@
 <template>
   <div id="app">
-    <el-container>
-      <el-main>
-        <router-view></router-view>
-      </el-main>
-    </el-container>
+    
+    <router-view></router-view>
+      
   </div>
 </template>
 
@@ -73,4 +71,17 @@ a {
     opacity: 0.8;
   }
 } 
+
+
+.back-link{
+  width: 200px;
+  height: 50px;
+  display: inline-block;
+  top: 10%;
+  left: 80%;
+  line-height: 50px;
+  color: white;
+  text-decoration: none;
+  margin-bottom: 10px;
+}
 </style>

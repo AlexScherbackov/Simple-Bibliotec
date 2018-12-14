@@ -36,7 +36,7 @@ export default new Vue({
 				buf.first_publish_year = item.first_publish_year;
 				buf.has_fulltext = item.has_fulltext ? "Yes" : "No";
 				buf.contributor = item.contributor;
-				buf.sentence = item.first_sentence ? item.first_sentence.join(' ') : '';
+				buf.sentence = item.first_sentence ? item.first_sentence[0] : '';
 				buf.isbn = item.isbn;
 				buf.person = item.person;
 				buf.place = item.place;

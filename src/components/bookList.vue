@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<h1 class="list-header">{{authorName}}</h1>
-		<router-link :to="{name: 'home'}" class="bg-blue fixed-top back-link">Back to the search</router-link>
+		<router-link :to="{name: 'search'}" class="bg-blue fixed-top back-link">Back to the search</router-link>
 		<el-table
 		:data="books"
 		stripe
@@ -66,14 +66,4 @@
 	text-transform: capitalize;
 }
 
-.back-link{
-	width: 200px;
-	height: 50px;
-	display: inline-block;
-	top: 10%;
-	left: 80%;
-	line-height: 50px;
-	color: white;
-	text-decoration: none;
-}
 </style>

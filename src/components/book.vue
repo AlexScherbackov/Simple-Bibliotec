@@ -1,5 +1,6 @@
 <template>
 	<div>
+		<router-link :to="{name: 'bookList'}" class="bg-blue fixed-top back-link">Back to the list</router-link>
 		<el-row>
 			<el-col :span="12">
 				<div class="flex-container-column book-box">
@@ -11,8 +12,11 @@
 						<span class="book__data-name">Автор:</span>
 						<span class="book__data">{{book.author.toString()}}</span>
 					</div>
-					
-					<div class="flex-row book__data-row">
+					<div class="flex-row book__data-row" v-if="book.sentence">
+						<span class="book__data-name">Первая строчка:</span>
+						<span class="book__data">{{book.sentence}}</span>
+					</div>
+					<div class="flex-row book__data-row" v-if="book.contributor">
 						<span class="book__data-name">Свой вклад внесли:</span>
 						<ul class="book__data book__data-list">
 							<li v-for="item in book.contributor" class="book__data-list-item">{{item}}</li>
@@ -21,7 +25,11 @@
 				</div>
 			</el-col>
 			<el-col :span="12">
-
+				<div class="flex-container-column book-box">
+					<ul class="book__data book__data-list" v-if="book.isbn" >
+							<li v-for="item in book.isbn" class="book__data-list-item"><a href="">{{item}}</a></li>
+						</ul>
+				</div>
 			</el-col>
 		</el-row>
 	</div>
@@ -29,14 +37,19 @@
 
 <script>
 	export default {
+		props: {
+			id: {
+				type: Number,
+				required: true
+			}
+		},
 		data(){
 			return{
-				
 				book: null
 			}
 		} ,
 		created(){
-			this.book = this.$store.getters.getBookForId(this.$route.params.id)[0];
+			this.book = this.$store.getters.getBookForId(this.id)[0];
 			console.log(this.book)
 		}
 	}
@@ -73,6 +86,7 @@
 			font-size: 24px;
     	line-height: 32px;
 			color: black;
+			text-align: left;
 		}
 		&__data-list{
 			margin: 0;

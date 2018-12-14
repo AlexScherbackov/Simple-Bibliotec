@@ -1,0 +1,16 @@
+body{
+	margin: 0;
+}
+
+.container{
+	padding-left: 5%;
+	padding-right: 5%;
+}
+
+.row{
+	width: 100%;
+}
+
+a{
+	cursor: pointer;
+}
