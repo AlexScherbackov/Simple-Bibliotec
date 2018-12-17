@@ -10,17 +10,12 @@
 				:model="formData" 
 				label-width="120px" label-position="top" 
 				class="sign-form"
+
 				>
-				<el-form-item label="Name" >
-					<el-input v-model="formData.name"></el-input>
-				</el-form-item>
-				<el-form-item label="Surname" >
-					<el-input v-model="formData.surname"></el-input>
-				</el-form-item>
 				<el-form-item label="Email" >
 					<el-input 
 					v-model="formData.email" 
-					@change="validateEmailChange" 
+					@change="validateEmail" 
 					:class="{isNotValide: !validatorOptions.isEmailValide}"
 					>
 				</el-input>
@@ -29,7 +24,7 @@
 			<el-form-item label="Password" >
 				<el-input 
 				v-model="formData.password" 
-				@change="validatePasswordChange"
+				@change="validatePassword"
 				:class="{
 					isCritical: validatorOptions.isPasswordValide.classObject.critical,
 					isWarning: validatorOptions.isPasswordValide.classObject.warning,
@@ -56,19 +51,16 @@
 		mixins: [Form],
 		data(){
 			return{
-				formData:{
-					name: '',
-					surname: '',
-				}
+				
 			}
 		},
 		methods:{
 			onSubmit(){
 				if(this.validatePasswordSubmit(this.formData.password)&&this.validateEmailSubmit(this.formData.email)){
-					localStorage.setItem('user', JSON.stringify(Object.assign({},this.formData)));
 					this.closeForm();
 				}
 			}
+
 		}
 	}
 </script>

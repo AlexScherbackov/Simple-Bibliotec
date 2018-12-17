@@ -1,8 +1,8 @@
 <template>
 	<div>
-		<top-line @callSignForm="callSignForm"></top-line>
+		<top-line @callSignForm="callSignForm" @callLogForm="callLogForm"></top-line>
 		<popup :isVisible="showPopup">
-			<sign-form @closeSignForm="closeSignForm"></sign-form>
+			<component :is="form" @closeForm="closeForm"></component>
 		</popup>
 	</div>
 </template>
@@ -11,16 +11,19 @@
 	import topLine from './topLine.vue';
 	import popup from './popup.vue';
 	import signForm from './signForm.vue';
+	import logForm from './logInForm.vue';
 
 	export default {
 		components:{
 			popup,
 			topLine,
-			signForm
+			'signForm': signForm,
+			'logForm': logForm
 		},
 		data(){
 			return {
-				popupIsVisible: false
+				popupIsVisible: false,
+				form: signForm
 			}
 		},
 		computed:{
@@ -31,8 +34,13 @@
 		methods: {
 			callSignForm(){
 				this.popupIsVisible =  true;
+				this.form = 'signForm';
 			},
-			closeSignForm(){
+			callLogForm(){
+				this.popupIsVisible =  true;
+				this.form = 'logForm';
+			},
+			closeForm(){
 				this.popupIsVisible = false;
 			}
 		},

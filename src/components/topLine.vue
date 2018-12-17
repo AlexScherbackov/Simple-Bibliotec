@@ -24,8 +24,12 @@
 				<nav class="autorization ">
 					<ul class="autorization__list list">
 						<li class="autorization__list-item">
-							Log
-							<!-- <router-link :to="{name: 'logForm'}">Log In</router-link> -->
+							<el-button 
+								class="autorization__btn"
+								@click="callLogForm"
+							>
+								Log in
+							</el-button>
 						</li>
 						<li class="autorization__list-item autorization__list-item--bg-blue">
 							<el-button 
@@ -54,6 +58,9 @@
 		methods:{
 			callSignForm(){
 				this.$emit('callSignForm');
+			},
+			callLogForm(){
+				this.$emit('callLogForm');
 			}
 		}
 	}
