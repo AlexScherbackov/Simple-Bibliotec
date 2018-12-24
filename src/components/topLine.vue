@@ -10,7 +10,7 @@
 				</div>
 			</el-col>
 			<el-col :span="12">
-				<nav class="navigation ">
+				<nav class="navigation">
 					<ul class="navigation__list list">
 						<li class="navigation__list-item">Site Map</li>
 						<li class="navigation__list-item">
@@ -21,35 +21,25 @@
 				</nav>
 			</el-col>
 			<el-col :span="6">
-				<nav class="autorization ">
-					<ul class="autorization__list list">
-						<li class="autorization__list-item">
-							<el-button 
-								class="autorization__btn"
-								@click="callLogForm"
-							>
-								Log in
-							</el-button>
-						</li>
-						<li class="autorization__list-item autorization__list-item--bg-blue">
-							<el-button 
-								type="primary" 
-								class="autorization__btn"
-								@click="callSignForm"
-							>
-								Sign in
-							</el-button>
-						</li>
-					</ul>
-				</nav>
+				<component :is="autorizationTriger"  @callSignForm="callSignForm" @callLogForm="callLogForm"></component>
 			</el-col>
 		</el-row>
-
+		
 	</div>
 </template>
 
 <script>
+	import autorizationBar from './autorizationBar.vue';
+	import userLink from './userProfileLink.vue';
+
 	export default {
+		components:{
+			'autorization-bar': autorizationBar,
+			'user-link': userLink
+		},
+		props:{
+			autorization: Boolean
+		},
 		data(){
 			return {
 				
@@ -62,16 +52,16 @@
 			callLogForm(){
 				this.$emit('callLogForm');
 			}
+		},
+		computed:{
+			autorizationTriger(){
+				return this.autorization ? 'user-link' : 'autorization-bar';
+			}
 		}
 	}
 </script>
 
 <style lang="scss" scoped>
-.list{
-	margin: 0;
-	padding: 0;
-	line-height: 42px;
-}
 
 .logo{
 	display: flex;
@@ -79,6 +69,7 @@
 	justify-content: space-around;
 	font-size: 28px;
 	font-weight: 700;
+	cursor: pointer;
 	&:hover .logo-hover-effect:after{
 		left: 120%;
 		transition: all 1s cubic-bezier(0.19, 1, 0.22, 1);
@@ -119,12 +110,6 @@
 	height: 80px;
 	background-color: #4285B4;
 	color: white;
-	
-}
-
-.autorization__btn{
-	font-size: 16px;
-	letter-spacing: 0.8px;
 	
 }
 

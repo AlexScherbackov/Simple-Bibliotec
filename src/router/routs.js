@@ -1,6 +1,6 @@
-import search from '../components/searchForm.vue';
-import list from '../components/bookList.vue';
-import book from '../components/book.vue';
+import search from '../components/forms/searchForm.vue';
+import list from '../components/books/bookList.vue';
+import book from '../components/books/book.vue';
 import homePage from '../components/homePage.vue';
 
 export const routes = [

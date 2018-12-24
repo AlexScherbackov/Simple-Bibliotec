@@ -1,6 +1,7 @@
 <template>
 	<div>
-		<top-line @callSignForm="callSignForm" @callLogForm="callLogForm"></top-line>
+		<top-line @callSignForm="callSignForm" @callLogForm="callLogForm" :autorization="!!user"></top-line>
+		<slider></slider>
 		<popup :isVisible="showPopup">
 			<component :is="form" @closeForm="closeForm"></component>
 		</popup>
@@ -10,15 +11,18 @@
 <script>
 	import topLine from './topLine.vue';
 	import popup from './popup.vue';
-	import signForm from './signForm.vue';
-	import logForm from './logInForm.vue';
+	import signForm from './forms/signForm.vue';
+	import logForm from './forms/logInForm.vue';
+	import slider from './slider/slider.vue';
 
+	import {mapGetters} from 'vuex';
 	export default {
 		components:{
 			popup,
 			topLine,
 			'signForm': signForm,
-			'logForm': logForm
+			'logForm': logForm,
+			slider
 		},
 		data(){
 			return {
@@ -27,6 +31,7 @@
 			}
 		},
 		computed:{
+			...mapGetters({user:'getActualUser'}),
 			showPopup(){
 				return this.popupIsVisible
 			}

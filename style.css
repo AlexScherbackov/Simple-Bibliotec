@@ -18,3 +18,9 @@ body{
 a{
 	cursor: pointer;
 }
+
+.list{
+	margin: 0;
+	padding: 0;
+	line-height: 42px;
+}
